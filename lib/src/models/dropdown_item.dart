@@ -5,12 +5,13 @@ class DropdownItem<T> {
   /// Creates a new instance of [DropdownItem].
   ///
   /// The [label] and [value] parameters are required.
-  /// The [disabled] and [selected] parameters are optional and default to false.
+  /// The [disabled], [selected], and [key] parameters are optional.
   DropdownItem({
     required this.label,
     required this.value,
     this.disabled = false,
     this.selected = false,
+    this.key,
   });
 
   /// Creates a new instance of [DropdownItem] from a map.
@@ -20,12 +21,14 @@ class DropdownItem<T> {
   /// - 'value': The value associated with the dropdown item (required).
   /// - 'disabled': Indicates whether the dropdown item is disabled (optional, default is false).
   /// - 'selected': Indicates whether the dropdown item is selected (optional, default is false).
+  /// - 'key': A unique identifier for the dropdown item (optional).
   factory DropdownItem.fromMap(Map<String, dynamic> map) {
     return DropdownItem<T>(
       label: map['label'] as String? ?? '',
       value: map['value'] as T,
       disabled: map['disabled'] as bool? ?? false,
       selected: map['selected'] as bool? ?? false,
+      key: map['key'] != null ? Key(map['key'].toString()) : null,
     );
   }
 
@@ -41,6 +44,9 @@ class DropdownItem<T> {
   /// Indicates whether the dropdown item is selected.
   bool selected;
 
+  /// A unique identifier for the dropdown item.
+  final Key? key;
+
   /// Converts the [DropdownItem] instance to a map.
   ///
   /// The returned map will contain the following keys:
@@ -48,13 +54,20 @@ class DropdownItem<T> {
   /// - 'value': The value associated with the dropdown item.
   /// - 'disabled': Indicates whether the dropdown item is disabled.
   /// - 'selected': Indicates whether the dropdown item is selected.
+  /// - 'key': A unique identifier for the dropdown item (if provided).
   Map<String, dynamic> toMap() {
-    return {
+    final map = {
       'label': label,
       'value': value,
       'disabled': disabled,
       'selected': selected,
     };
+
+    if (key != null) {
+      map['key'] = key.toString();
+    }
+
+    return map;
   }
 
   /// Converts the [DropdownItem] instance to a JSON string.
@@ -62,7 +75,7 @@ class DropdownItem<T> {
 
   @override
   String toString() {
-    return 'ValueItem(label: $label, value: $value, disabled: $disabled, selected: $selected)';
+    return 'ValueItem(label: $label, value: $value, disabled: $disabled, selected: $selected, key: $key)';
   }
 
   @override
@@ -73,12 +86,17 @@ class DropdownItem<T> {
         other.label == label &&
         other.value == value &&
         other.disabled == disabled &&
-        other.selected == selected;
+        other.selected == selected &&
+        other.key == key;
   }
 
   @override
   int get hashCode =>
-      label.hashCode ^ value.hashCode ^ disabled.hashCode ^ selected.hashCode;
+      label.hashCode ^
+      value.hashCode ^
+      disabled.hashCode ^
+      selected.hashCode ^
+      (key?.hashCode ?? 0);
 
   /// Creates a copy of the [DropdownItem] instance with the specified properties.
   ///
@@ -88,12 +106,14 @@ class DropdownItem<T> {
     T? value,
     bool? disabled,
     bool? selected,
+    Key? key,
   }) {
     return DropdownItem<T>(
       label: label ?? this.label,
       value: value ?? this.value,
       disabled: disabled ?? this.disabled,
       selected: selected ?? this.selected,
+      key: key ?? this.key,
     );
   }
 }
