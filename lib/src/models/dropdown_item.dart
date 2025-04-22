@@ -28,7 +28,7 @@ class DropdownItem<T> {
       value: map['value'] as T,
       disabled: map['disabled'] as bool? ?? false,
       selected: map['selected'] as bool? ?? false,
-      key: map['key'] != null ? Key(map['key'].toString()) : null,
+      key: map['key'] as GlobalKey? ?? GlobalKey(),
     );
   }
 
@@ -45,7 +45,7 @@ class DropdownItem<T> {
   bool selected;
 
   /// A unique identifier for the dropdown item.
-  final Key? key;
+  final GlobalKey? key;
 
   /// Converts the [DropdownItem] instance to a map.
   ///
@@ -106,7 +106,7 @@ class DropdownItem<T> {
     T? value,
     bool? disabled,
     bool? selected,
-    Key? key,
+    GlobalKey? key,
   }) {
     return DropdownItem<T>(
       label: label ?? this.label,

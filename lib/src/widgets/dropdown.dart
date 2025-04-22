@@ -18,6 +18,7 @@ class _Dropdown<T> extends StatelessWidget {
     this.itemBuilder,
     this.itemSeparator,
     this.singleSelect = false,
+    this.scrollToSelected = false,
   }) : super(key: key);
 
   /// The decoration of the dropdown.
@@ -55,6 +56,9 @@ class _Dropdown<T> extends StatelessWidget {
 
   /// Whether the selection is single.
   final bool singleSelect;
+
+  /// Whether to scroll to the selected item.
+  final bool scrollToSelected;
 
   int get _selectedCount => items.where((element) => element.selected).length;
 
@@ -135,6 +139,12 @@ class _Dropdown<T> extends StatelessWidget {
 
   Widget _buildOption(int index, ThemeData theme) {
     final option = items[index];
+    if (option.selected && scrollToSelected) {
+      //post frame callback ensure the selected item is visible scrollable
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Scrollable.ensureVisible(option.key!.currentContext!);
+      });
+    }
 
     if (itemBuilder != null) {
       return itemBuilder!(option, index, () => onItemTap(option));

@@ -106,6 +106,7 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.onSelectionChange,
     this.onSearchChange,
     this.closeOnBackButton = false,
+    this.scrollToSelected = false,
     Key? key,
   })  : future = null,
         super(key: key);
@@ -154,8 +155,10 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.onSelectionChange,
     this.onSearchChange,
     this.closeOnBackButton = false,
+    this.scrollToSelected = false,
     Key? key,
-  })  : items = const [],
+  })
+      : items = const [],
         super(key: key);
 
   /// The list of dropdown items.
@@ -224,6 +227,9 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
   ///
   /// Note: This option requires the app to have a router, such as MaterialApp.router, in order to work properly.
   final bool closeOnBackButton;
+
+  /// Whether to scroll to the selected item when the dropdown is opened.
+  final bool scrollToSelected;
 
   @override
   State<MultiDropdown<T>> createState() => _MultiDropdownState<T>();
@@ -439,6 +445,7 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
                       maxSelections: widget.maxSelections,
                       singleSelect: widget.singleSelect,
                       onSearchChange: _dropdownController._setSearchQuery,
+                      scrollToSelected: widget.scrollToSelected,
                     ),
                   ),
                 ),
