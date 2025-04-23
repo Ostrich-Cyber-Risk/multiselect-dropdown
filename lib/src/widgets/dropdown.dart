@@ -142,12 +142,6 @@ class _Dropdown<T> extends StatelessWidget {
 
   Widget _buildOption(int index, ThemeData theme) {
     final option = items[index];
-    if (option.selected && scrollToSelected) {
-      //post frame callback ensure the selected item is visible scrollable
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        Scrollable.ensureVisible(option.key!.currentContext!);
-      });
-    }
 
     if (itemBuilder != null) {
       return itemBuilder!(option, index, () => onItemTap(option));
@@ -174,7 +168,6 @@ class _Dropdown<T> extends StatelessWidget {
         title: Text(option.label),
         trailing: trailing,
         dense: true,
-        autofocus: true,
         enabled: !option.disabled,
         selected: option.selected,
         visualDensity: VisualDensity.adaptivePlatformDensity,
