@@ -141,6 +141,9 @@ class _Dropdown<T> extends StatelessWidget {
   }
 
   Widget _buildOption(int index, ThemeData theme) {
+    if(index < 0) {
+      return const SizedBox.shrink();
+    }
     final option = items[index];
 
     if (itemBuilder != null) {
