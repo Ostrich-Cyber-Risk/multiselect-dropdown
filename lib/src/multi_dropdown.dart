@@ -446,7 +446,8 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
                       maxSelections: widget.maxSelections,
                       singleSelect: widget.singleSelect,
                       onSearchChange: _dropdownController._setSearchQuery,
-                      scrollToSelected: widget.scrollToSelected,
+                      // only scroll to selected item when the dropdown is opened, not when searching
+                      scrollToSelected: widget.scrollToSelected && _dropdownController._searchQuery.isEmpty,
                     ),
                   ),
                 ),
