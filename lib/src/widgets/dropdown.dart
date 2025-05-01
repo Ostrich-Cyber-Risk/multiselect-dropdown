@@ -175,7 +175,6 @@ class _Dropdown<T> extends StatelessWidget {
         title: Text(option.label),
         trailing: trailing,
         dense: true,
-        enabled: !disabled,
         selected: option.selected,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         focusColor: dropdownItemDecoration.backgroundColor?.withAlpha(100),
@@ -186,9 +185,7 @@ class _Dropdown<T> extends StatelessWidget {
         tileColor: tileColor ?? Colors.transparent,
         selectedTileColor: dropdownItemDecoration.selectedBackgroundColor ??
             Colors.grey.shade200,
-        onTap: () {
-          if (option.disabled) return;
-
+        onTap: disabled ? null : () {
           if (singleSelect || !_reachedMaxSelection(option)) {
             onItemTap(option);
             return;
