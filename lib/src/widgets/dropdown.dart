@@ -19,6 +19,7 @@ class _Dropdown<T> extends StatelessWidget {
     this.itemSeparator,
     this.singleSelect = false,
     this.scrollToSelected = false,
+    this.disableSelected = false,
   }) : super(key: key);
 
   /// The decoration of the dropdown.
@@ -59,6 +60,9 @@ class _Dropdown<T> extends StatelessWidget {
 
   /// Whether to scroll to the selected item.
   final bool scrollToSelected;
+
+  /// Whether to disable selected items.
+  final bool disableSelected;
 
   int get _selectedCount => items.where((element) => element.selected).length;
 
@@ -165,12 +169,13 @@ class _Dropdown<T> extends StatelessWidget {
             ? dropdownItemDecoration.selectedIcon
             : null;
 
+    final disabled = option.disabled || (disableSelected && option.selected);
     return Ink(
       child: ListTile(
         title: Text(option.label),
         trailing: trailing,
         dense: true,
-        enabled: !option.disabled,
+        enabled: !disabled,
         selected: option.selected,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         focusColor: dropdownItemDecoration.backgroundColor?.withAlpha(100),

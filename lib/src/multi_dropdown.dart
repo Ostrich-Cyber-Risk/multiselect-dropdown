@@ -108,6 +108,7 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.onSearchChange,
     this.closeOnBackButton = false,
     this.scrollToSelected = false,
+    this.disableSelected = false,
     Key? key,
   })  : future = null,
         super(key: key);
@@ -157,9 +158,9 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.onSearchChange,
     this.closeOnBackButton = false,
     this.scrollToSelected = false,
+    this.disableSelected = false,
     Key? key,
-  })
-      : items = const [],
+  })  : items = const [],
         super(key: key);
 
   /// The list of dropdown items.
@@ -231,6 +232,9 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
 
   /// Whether to scroll to the selected item when the dropdown is opened.
   final bool scrollToSelected;
+
+  /// Whether to disable selected items.
+  final bool disableSelected;
 
   @override
   State<MultiDropdown<T>> createState() => _MultiDropdownState<T>();
@@ -447,7 +451,9 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
                       singleSelect: widget.singleSelect,
                       onSearchChange: _dropdownController._setSearchQuery,
                       // only scroll to selected item when the dropdown is opened, not when searching
-                      scrollToSelected: widget.scrollToSelected && _dropdownController._searchQuery.isEmpty,
+                      scrollToSelected: widget.scrollToSelected &&
+                          _dropdownController._searchQuery.isEmpty,
+                      disableSelected: widget.disableSelected,
                     ),
                   ),
                 ),
