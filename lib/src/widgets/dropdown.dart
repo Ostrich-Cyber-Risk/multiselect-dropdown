@@ -181,7 +181,7 @@ class _Dropdown<T> extends StatelessWidget {
         focusColor: dropdownItemDecoration.backgroundColor?.withAlpha(100),
         selectedColor: dropdownItemDecoration.selectedTextColor ??
             theme.colorScheme.onSurface,
-        textColor:
+        textColor: disabled ? dropdownItemDecoration.disabledTextColor :
             dropdownItemDecoration.textColor ?? theme.colorScheme.onSurface,
         tileColor: tileColor ?? Colors.transparent,
         selectedTileColor: dropdownItemDecoration.selectedBackgroundColor ??
