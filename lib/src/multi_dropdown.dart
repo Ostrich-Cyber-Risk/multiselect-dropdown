@@ -586,10 +586,6 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
 
     final selectedOptions = _dropdownController.selectedItems;
 
-    if (widget.singleSelect) {
-      return Text(selectedOptions.first.label);
-    }
-
     return _buildSelectedItems(selectedOptions);
   }
 
