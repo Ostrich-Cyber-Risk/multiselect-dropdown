@@ -6,11 +6,13 @@ class DropdownItem<T> {
   ///
   /// The [label] and [value] parameters are required.
   /// The [disabled] and [selected] parameters are optional and default to false.
+  /// The [textStyle] parameter is optional and allows custom text styling for this item.
   DropdownItem({
     required this.label,
     required this.value,
     this.disabled = false,
     this.selected = false,
+    this.textStyle,
   });
 
   /// Creates a new instance of [DropdownItem] from a map.
@@ -40,6 +42,9 @@ class DropdownItem<T> {
 
   /// Indicates whether the dropdown item is selected.
   bool selected;
+  
+  /// Optional text style to apply to this item when displayed.
+  final TextStyle? textStyle;
 
   /// Converts the [DropdownItem] instance to a map.
   ///
@@ -48,6 +53,7 @@ class DropdownItem<T> {
   /// - 'value': The value associated with the dropdown item.
   /// - 'disabled': Indicates whether the dropdown item is disabled.
   /// - 'selected': Indicates whether the dropdown item is selected.
+  /// Note: TextStyle is not included in the map as it's a UI-only property.
   Map<String, dynamic> toMap() {
     return {
       'label': label,
@@ -73,12 +79,13 @@ class DropdownItem<T> {
         other.label == label &&
         other.value == value &&
         other.disabled == disabled &&
-        other.selected == selected;
+        other.selected == selected &&
+        other.textStyle == textStyle;
   }
 
   @override
   int get hashCode =>
-      label.hashCode ^ value.hashCode ^ disabled.hashCode ^ selected.hashCode;
+      label.hashCode ^ value.hashCode ^ disabled.hashCode ^ selected.hashCode ^ (textStyle?.hashCode ?? 0);
 
   /// Creates a copy of the [DropdownItem] instance with the specified properties.
   ///
@@ -88,12 +95,14 @@ class DropdownItem<T> {
     T? value,
     bool? disabled,
     bool? selected,
+    TextStyle? textStyle,
   }) {
     return DropdownItem<T>(
       label: label ?? this.label,
       value: value ?? this.value,
       disabled: disabled ?? this.disabled,
       selected: selected ?? this.selected,
+      textStyle: textStyle ?? this.textStyle,
     );
   }
 }

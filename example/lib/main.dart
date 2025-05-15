@@ -59,14 +59,30 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     var items = [
-      DropdownItem(label: 'Nepal', value: User(name: 'Nepal', id: 1)),
-      DropdownItem(label: 'Australia', value: User(name: 'Australia', id: 6)),
+      DropdownItem(
+        label: 'Nepal', 
+        value: User(name: 'Nepal', id: 1),
+        textStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),
+      ),
+      DropdownItem(
+        label: 'Australia', 
+        value: User(name: 'Australia', id: 6),
+        textStyle: const TextStyle(fontStyle: FontStyle.italic),
+      ),
       DropdownItem(label: 'India', value: User(name: 'India', id: 2)),
       DropdownItem(label: 'China', value: User(name: 'China', id: 3)),
-      DropdownItem(label: 'USA', value: User(name: 'USA', id: 4)),
+      DropdownItem(
+        label: 'USA', 
+        value: User(name: 'USA', id: 4),
+        textStyle: const TextStyle(fontSize: 18, letterSpacing: 1.2),
+      ),
       DropdownItem(label: 'UK', value: User(name: 'UK', id: 5)),
       DropdownItem(label: 'Germany', value: User(name: 'Germany', id: 7)),
-      DropdownItem(label: 'France', value: User(name: 'France', id: 8)),
+      DropdownItem(
+        label: 'France', 
+        value: User(name: 'France', id: 8),
+        textStyle: const TextStyle(decoration: TextDecoration.underline),
+      ),
     ];
     return Scaffold(
         backgroundColor: Colors.white,
@@ -175,8 +191,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                               controller.addItems([
                                 DropdownItem(
-                                    label: 'France',
-                                    value: User(name: 'France', id: 8)),
+                                  label: 'Japan',
+                                  value: User(name: 'Japan', id: 9),
+                                  textStyle: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.red,
+                                  ),
+                                ),
                               ]);
                             },
                             child: const Text('Add Items'),

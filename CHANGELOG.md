@@ -1,5 +1,9 @@
 # ChangeLOG
 
+## 3.0.2
+
+- Added optional `textStyle` parameter to `DropdownItem` to allow custom styling of individual dropdown items.
+
 ## 3.0.1
 
 - Fixed overlay exception error.

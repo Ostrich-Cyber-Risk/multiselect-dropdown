@@ -172,7 +172,10 @@ class _Dropdown<T> extends StatelessWidget {
     final disabled = option.disabled || (disableSelected && option.selected);
     return Ink(
       child: ListTile(
-        title: Text(option.label),
+        title: Text(
+          option.label,
+          style: option.textStyle,
+        ),
         trailing: trailing,
         dense: true,
         selected: option.selected,
