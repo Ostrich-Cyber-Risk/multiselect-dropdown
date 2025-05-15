@@ -63,18 +63,31 @@ class _MyHomePageState extends State<MyHomePage> {
         label: 'Nepal', 
         value: User(name: 'Nepal', id: 1),
         textStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),
+        unselectedIcon: const Icon(Icons.flag, color: Colors.blue),
       ),
       DropdownItem(
         label: 'Australia', 
         value: User(name: 'Australia', id: 6),
         textStyle: const TextStyle(fontStyle: FontStyle.italic),
       ),
-      DropdownItem(label: 'India', value: User(name: 'India', id: 2)),
+      DropdownItem(
+        label: 'India', 
+        value: User(name: 'India', id: 2),
+        unselectedIcon: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Icon(Icons.arrow_forward, size: 16, color: Colors.green),
+            SizedBox(width: 4),
+            Text('Select', style: TextStyle(fontSize: 12, color: Colors.green)),
+          ],
+        ),
+      ),
       DropdownItem(label: 'China', value: User(name: 'China', id: 3)),
       DropdownItem(
         label: 'USA', 
         value: User(name: 'USA', id: 4),
         textStyle: const TextStyle(fontSize: 18, letterSpacing: 1.2),
+        unselectedIcon: const Icon(Icons.star, color: Colors.red),
       ),
       DropdownItem(label: 'UK', value: User(name: 'UK', id: 5)),
       DropdownItem(label: 'Germany', value: User(name: 'Germany', id: 7)),
@@ -82,6 +95,14 @@ class _MyHomePageState extends State<MyHomePage> {
         label: 'France', 
         value: User(name: 'France', id: 8),
         textStyle: const TextStyle(decoration: TextDecoration.underline),
+        unselectedIcon: Container(
+          padding: const EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            color: Colors.blue.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: const Text('FR', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+        ),
       ),
     ];
     return Scaffold(
@@ -197,6 +218,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.red,
                                   ),
+                                  unselectedIcon: const Icon(Icons.travel_explore, color: Colors.purple),
                                 ),
                               ]);
                             },

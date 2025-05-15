@@ -167,7 +167,7 @@ class _Dropdown<T> extends StatelessWidget {
         ? dropdownItemDecoration.disabledIcon
         : option.selected
             ? dropdownItemDecoration.selectedIcon
-            : null;
+            : option.unselectedIcon;
 
     final disabled = option.disabled || (disableSelected && option.selected);
     return Ink(

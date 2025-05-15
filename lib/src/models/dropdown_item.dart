@@ -7,12 +7,14 @@ class DropdownItem<T> {
   /// The [label] and [value] parameters are required.
   /// The [disabled] and [selected] parameters are optional and default to false.
   /// The [textStyle] parameter is optional and allows custom text styling for this item.
+  /// The [unselectedIcon] parameter is optional and allows displaying a custom widget when the item is not selected.
   DropdownItem({
     required this.label,
     required this.value,
     this.disabled = false,
     this.selected = false,
     this.textStyle,
+    this.unselectedIcon,
   });
 
   /// Creates a new instance of [DropdownItem] from a map.
@@ -45,6 +47,9 @@ class DropdownItem<T> {
   
   /// Optional text style to apply to this item when displayed.
   final TextStyle? textStyle;
+  
+  /// Optional widget to display when the item is not selected.
+  final Widget? unselectedIcon;
 
   /// Converts the [DropdownItem] instance to a map.
   ///
@@ -80,12 +85,18 @@ class DropdownItem<T> {
         other.value == value &&
         other.disabled == disabled &&
         other.selected == selected &&
-        other.textStyle == textStyle;
+        other.textStyle == textStyle &&
+        other.unselectedIcon == unselectedIcon;
   }
 
   @override
   int get hashCode =>
-      label.hashCode ^ value.hashCode ^ disabled.hashCode ^ selected.hashCode ^ (textStyle?.hashCode ?? 0);
+      label.hashCode ^ 
+      value.hashCode ^ 
+      disabled.hashCode ^ 
+      selected.hashCode ^ 
+      (textStyle?.hashCode ?? 0) ^
+      (unselectedIcon?.hashCode ?? 0);
 
   /// Creates a copy of the [DropdownItem] instance with the specified properties.
   ///
@@ -96,6 +107,7 @@ class DropdownItem<T> {
     bool? disabled,
     bool? selected,
     TextStyle? textStyle,
+    Widget? unselectedIcon,
   }) {
     return DropdownItem<T>(
       label: label ?? this.label,
@@ -103,6 +115,7 @@ class DropdownItem<T> {
       disabled: disabled ?? this.disabled,
       selected: selected ?? this.selected,
       textStyle: textStyle ?? this.textStyle,
+      unselectedIcon: unselectedIcon ?? this.unselectedIcon,
     );
   }
 }

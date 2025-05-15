@@ -3,6 +3,7 @@
 ## 3.0.2
 
 - Added optional `textStyle` parameter to `DropdownItem` to allow custom styling of individual dropdown items.
+- Added optional `unselectedIcon` parameter to `DropdownItem` to display a custom widget when the item is not selected.
 
 ## 3.0.1
 

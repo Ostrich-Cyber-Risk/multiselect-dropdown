@@ -98,13 +98,14 @@ _controller.closeDropdown(); /// Hide the dropdown if it is open
 
 ## DropdownItem
 
-| Parameter | Type      | Description                                      | Default  |
-| --------- | --------- | ------------------------------------------------ | -------- |
-| label     | String    | The label of the dropdown item.                  | Required |
-| value     | T         | The value associated with the dropdown item.     | Required |
-| disabled  | bool      | Indicates whether the dropdown item is disabled. | false    |
-| selected  | bool      | Indicates whether the dropdown item is selected. | false    |
-| textStyle | TextStyle | Custom text style to apply to this item.         | null     |
+| Parameter     | Type      | Description                                      | Default  |
+| ------------- | --------- | ------------------------------------------------ | -------- |
+| label         | String    | The label of the dropdown item.                  | Required |
+| value         | T         | The value associated with the dropdown item.     | Required |
+| disabled      | bool      | Indicates whether the dropdown item is disabled. | false    |
+| selected      | bool      | Indicates whether the dropdown item is selected. | false    |
+| textStyle     | TextStyle | Custom text style to apply to this item.         | null     |
+| unselectedIcon| Widget    | Widget to display when the item is not selected. | null     |
 
 ## ChipDecoration
 
